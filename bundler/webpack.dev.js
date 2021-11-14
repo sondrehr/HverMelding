@@ -19,12 +19,12 @@ module.exports = merge(
             contentBase: './dist',
             watchContentBase: true,
             open: true,
-            https: false,
-            useLocalIp: true,
+            https: false,                                              
+            useLocalIp: true,                                          
             disableHostCheck: true,
-            overlay: true,
-            noInfo: true,
-            after: function(app, server, compiler)
+            overlay: true,                                             // Show error overlay in the browser
+            //noInfo: true,                                              // Hide all webpack info                                                         
+            after: function(app, server, compiler)                     // Prints the server address etc...
             {
                 const port = server.options.port
                 const https = server.options.https ? 's' : ''

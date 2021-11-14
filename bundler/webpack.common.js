@@ -1,5 +1,6 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { loader } = require('mini-css-extract-plugin')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
 
@@ -30,7 +31,8 @@ module.exports = {
         [
             // HTML
             {
-                test: /\.(html)$/,
+                test: /\.html$/,
+                exclude: [/node_modules/, require.resolve('../src/index.html')],
                 use: ['html-loader']
             },
 
@@ -57,16 +59,10 @@ module.exports = {
             // Images
             {
                 test: /\.(jpg|png|gif|svg)$/,
-                use:
-                [
-                    {
-                        loader: 'file-loader',
-                        options:
-                        {
-                            outputPath: 'assets/images/'
-                        }
-                    }
-                ]
+                type: 'asset/resource',
+                generator: {
+                    filename: 'img/[hash][ext]'
+                }
             },
 
             // Fonts

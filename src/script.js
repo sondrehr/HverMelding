@@ -5,6 +5,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
 import { LoopRepeat } from 'three/build/three.module';
 import { PointLightHelper } from 'three';
+import { sunToMoon, moonToSun } from './transition';
 
 
 var renderer, camera, scene, gui;
@@ -73,47 +74,15 @@ window.addEventListener('resize', () =>
 })
 
 
-function sunToMoon(){
-    while (moon.children[0].material.opacity < 1){
-        moon.children[0].material.opacity += 0.01;
-    }
-    while (sun.children[0].material.opacity > 0){
-        sun.children[0].material.opacity -= 0.01;
-    }
-    moon.traverse( function( node ) {
-        node.castShadow = true;
-    } );
-    sun.traverse( function( node ) {
-        node.castShadow = false;
-    } );
-}
-
-function moonToSun() {
-    while (moon.children[0].material.opacity > 0){
-        moon.children[0].material.opacity -= 0.01;
-    }
-    while (sun.children[0].material.opacity < 1){
-        sun.children[0].material.opacity += 0.01;
-    }
-    sun.traverse( function( node ) {
-        node.castShadow = true;
-    } );
-    moon.traverse( function( node ) {
-        node.castShadow = false;
-    } );
-}
-
 window.addEventListener('keydown', function(event) {
     switch (event.key) {
         case "s":
-            console.log("hei");
             scene.add(rain);
-            moonToSun()
+            moonToSun(sun, moon)
         break;
         case "m":
-            console.log("hade");
             scene.remove(rain);
-            sunToMoon()
+            sunToMoon(sun, moon)
         break;
             
     }  
@@ -449,7 +418,7 @@ function load3Dfigures() {
     //loadMist();
     //loadThunder();
     //loadSnow();
-    //loadRain();
+    loadRain();
     //loadDrizzle();
 }
 
@@ -545,9 +514,10 @@ function createControls() {
 }
 
 function createLights() {
-    const pointLight = new THREE.PointLight(0xffffff, 0.2)
-    pointLight.position.set(-8, 15, -5)
-    scene.add(pointLight)
+    //Ambient Light
+    const ambientLight = new THREE.PointLight(0xffffff, 0.2)
+    ambientLight.position.set(-8, 15, -5)
+    scene.add(ambientLight)
    
     const thunderLight0 = new THREE.RectAreaLight(0xffffff, 0.5, 0.6, 0.6)
     thunderLight0.position.set(1.98, 4, -3.9)
@@ -564,18 +534,20 @@ function createLights() {
     thunderLight2.lookAt(2.8, 4, -5);
     //scene.add(thunderLight2)
 
-    const pointLight3 = new THREE.PointLight(0x5dc2c9, 0.2)
-    pointLight3.position.set(1, 7, -3)
-    pointLight3.castShadow = true;
-    pointLight3.shadow.mapSize.width = 512;
-    pointLight3.shadow.mapSize.height = 512;
-    pointLight3.shadow.radius = 10;
-    scene.add(pointLight3)
+    //Light that makes shadows
+    const shadowLight = new THREE.PointLight(0x5dc2c9, 0.2)
+    shadowLight.position.set(1, 7, -3)
+    shadowLight.castShadow = true;
+    shadowLight.shadow.mapSize.width = 512;
+    shadowLight.shadow.mapSize.height = 512;
+    shadowLight.shadow.radius = 10;
+    scene.add(shadowLight)
 
-    const rectAreaLight = new THREE.RectAreaLight( 0xff00ff, 0.8, 3, 3);
-    rectAreaLight.position.set(2, 5, -3)
-    rectAreaLight.lookAt(3, 4, -5);
-    scene.add(rectAreaLight)
+    //Light that shades the objects
+    const shaderLight = new THREE.RectAreaLight( 0xff00ff, 0.8, 3, 3);
+    shaderLight.position.set(2, 5, -3)
+    shaderLight.lookAt(3, 4, -5);
+    scene.add(shaderLight)
 }
 
 function createObjects(){
