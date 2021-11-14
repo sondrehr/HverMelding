@@ -1,3 +1,8 @@
+### HverMelding
+
+My weather website
+
+## Installation and running
 
 ``` bash
 # Install dependencies (only the first time)
@@ -9,6 +14,8 @@ npm run dev
 # Build for production
 npm run build
 ```
+
+## Div
 
 During testing stage:
  - press m or s to switch between the weather states.
