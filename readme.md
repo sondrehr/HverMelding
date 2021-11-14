@@ -1,6 +1,11 @@
 ### HverMelding
-
 My weather website
+
+## Renders
+Examples of the models created in blender which were then imported to three.js
+<img src="https://github.com/sondrehr/HverMelding/blob/main/Blender%20renders/untitled.png" alt="Drone version 2" width="700"/>
+
+<img src="https://github.com/sondrehr/HverMelding/blob/main/Blender%20renders/untitled2.png" alt="Drone version 2" width="700"/>
 
 ## Installation and running
 
