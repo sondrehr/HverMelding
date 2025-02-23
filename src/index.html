@@ -4,33 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HverMelding</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="topNav">
+    <header class="topNav">
         <div class="container">
-            <a href="#home"><span id="hver">Hver</span>Melding</a>
-            
-            <nav>   
-                <ul class="primaryNav">
+            <a href="#home" class="logo"><span id="hver">Hver</span>Melding</a>
+            <nav>
+                <ul class="navList">
                     <li><a href="#">Map</a></li>
-                    <li><a href="#">about</a></li>
-                </ul>
-    
-                <ul class="secondaryNav">
+                    <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
                     <li class="dropDown">DropDownList</li>
-                    <img id="hamMenu" class="ham" src="assets/images/hamMenu.png" alt="Hamburger Menu">
                 </ul>
-            </nav>            
+                <img id="hamMenu" class="ham" src="static/models/hamurger-menu.svg" alt="Hamburger Menu">
+            </nav>
         </div>
-    </div> 
+    </header>
 
-    <canvas class="webgl"></canvas>
+    <main>
+        <div class="weather-container" id="weather-container">
+            <!-- Weather data will be inserted here -->
+        </div>
+        <canvas class="webgl"></canvas>
+    </main>
 
-    <div class="bottomNav">
+    <footer class="bottomNav">
         <div class="containerBottom">
-
+            <!-- Footer content -->
         </div>
-    </div>
+    </footer>
 </body>
 </html>

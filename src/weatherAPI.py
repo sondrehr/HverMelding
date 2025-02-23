@@ -62,8 +62,8 @@ def Forecast(lat, lng):
 
 if __name__ == '__main__':
 
-    Address = 'Utsiksvegen 74'
-    City = 'Kongsvinger'
+    Address = 'Trondheimsveien 95'
+    City = 'Oslo'
     CountryCode = 'NO'
     
     lat, lng = GeoCoder(Address, City, CountryCode)

@@ -8,7 +8,7 @@ import { PointLightHelper } from 'three';
 import { sunToMoon, moonToSun } from './transition';
 
 
-var renderer, camera, scene, gui;
+var renderer, camera, scene, gui, controls;
 var sun, moon, cloud, tornado, wind, fog, mist, thunder, snow, rain, drizzle;
 var mixerSun, mixerMoon, mixerCloud, mixerTornado, mixerWind, mixerFog, mixerMist, mixerSnow, mixerRain, mixerDrizzle;
 var sphere, floorMesh, rightWallMesh, leftWallMesh;
@@ -21,42 +21,10 @@ var clock = new THREE.Clock();
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
-
-
 const sizes = {
     width: window.innerWidth,
     height: window.innerHeight
 };
-
-/*
-const folder = gui.addFolder("Cube")
-          
-folder.add(models.rotation, "x").min(-30).max(30).step(0.01)
-folder.add(models.rotation, "y").min(-30).max(30).step(0.01)
-folder.add(models.rotation, "z").min(-30).max(30).step(0.01)
-folder.add(models.position, "x").min(-10).max(10).step(0.01)
-folder.add(models.position, "y").min(-10).max(10).step(0.01)
-folder.add(models.position, "z").min(-10).max(10).step(0.01)
-*/
-/*
-models.traverse( function( node ) {
-
-    //if ( node.isMesh ) { 
-        node.castShadow = true;
-    //}
-
-} );*/
-
-/*
-    const pointLight2 = new THREE.DirectionalLight(0x5dc2c9, 0.2)
-    pointLight2.position.set(3, 6, -4);
-    pointLight2.castShadow = true;
-    pointLight2.target.position.set(3, 4, -5);
-    pointLight2.shadow.mapSize.width = 128;
-    pointLight2.shadow.mapSize.height = 128;
-    pointLight2.shadow.radius = 15;
-    scene.add(pointLight2)
-    scene.add(pointLight2.target)*/
 
 window.addEventListener('resize', () =>
 {
@@ -71,6 +39,8 @@ window.addEventListener('resize', () =>
     // Update renderer
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+    adjustCameraPosition();
 })
 
 
@@ -429,7 +399,7 @@ function loadMeshes() {
     const geometry = new THREE.SphereBufferGeometry(.5, 64, 64)
 
     const background = new THREE.MeshStandardMaterial(
-        {color:0x33e7ff, 
+        {color:0x00e7ff, 
         side: THREE.DoubleSide}
     );
     
@@ -455,13 +425,11 @@ function loadMeshes() {
     rightWallMesh = new THREE.Mesh(rightWall, background)  
     rightWallMesh.position.set(10, 10, 10)
     rightWallMesh.rotation.y = Math.PI/2
-    floorMesh.receiveShadow = true
     scene.add(rightWallMesh)
 
     leftWallMesh = new THREE.Mesh(leftWall, background)
     leftWallMesh.position.set(-10, 10, -10)
     leftWallMesh.rotation.z = Math.PI/2
-    floorMesh.receiveShadow = true
     scene.add(leftWallMesh)
 }
 
@@ -478,7 +446,7 @@ function createScene(){
     gui = new dat.GUI()
 
     //Camera
-    camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
     camera.position.set(-3, 5, 1)
     scene.add(camera)
 
@@ -487,16 +455,16 @@ function createScene(){
         canvas: canvas,
         alpha: true
     })
-    renderer.setSize(sizes.width, sizes.height)
+    renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 }
 
 function createControls() {
-    const controls = new OrbitControls(camera, renderer.domElement)
+    controls = new OrbitControls(camera, renderer.domElement)
     controls.keys = {
-        LEFT: 37, //'ArrowLeft', //left arrow
+        LEFT: 37, //left arrow
         UP: 38, // up arrow
         RIGHT: 39, // right arrow
         BOTTOM: 40 // down arrow
@@ -514,11 +482,6 @@ function createControls() {
 }
 
 function createLights() {
-    //Ambient Light
-    const ambientLight = new THREE.PointLight(0xffffff, 0.2)
-    ambientLight.position.set(-8, 15, -5)
-    scene.add(ambientLight)
-   
     const thunderLight0 = new THREE.RectAreaLight(0xffffff, 0.5, 0.6, 0.6)
     thunderLight0.position.set(1.98, 4, -3.9)
     thunderLight0.lookAt(2.8, 4, -5);
@@ -534,6 +497,11 @@ function createLights() {
     thunderLight2.lookAt(2.8, 4, -5);
     //scene.add(thunderLight2)
 
+    //Ambient Light
+    const ambientLight = new THREE.PointLight(0xffffff, 0.4)
+    ambientLight.position.set(-8, 15, -5)
+    scene.add(ambientLight)
+
     //Light that makes shadows
     const shadowLight = new THREE.PointLight(0x5dc2c9, 0.2)
     shadowLight.position.set(1, 7, -3)
@@ -544,7 +512,7 @@ function createLights() {
     scene.add(shadowLight)
 
     //Light that shades the objects
-    const shaderLight = new THREE.RectAreaLight( 0xff00ff, 0.8, 3, 3);
+    const shaderLight = new THREE.RectAreaLight( 0xff00ff, 0.8, 2, 2);
     shaderLight.position.set(2, 5, -3)
     shaderLight.lookAt(3, 4, -5);
     scene.add(shaderLight)
@@ -553,6 +521,20 @@ function createLights() {
 function createObjects(){
     load3Dfigures();
     loadMeshes();
+}
+
+function adjustCameraPosition() {
+    const aspectRatio = window.innerWidth / window.innerHeight;
+    if (aspectRatio < 1.4) {
+        let x = 3 + (aspectRatio - 1.4) * 6;
+        let y = 5 - (aspectRatio - 1.4) * 0.5;
+        let z = 1 + (aspectRatio - 1.4) * 1.5;
+        controls.target.lerp(new THREE.Vector3(-x + 1, y - 1, z - 6), 0.03);
+        camera.position.lerp(new THREE.Vector3(-x    , y    , z)    , 0.03);
+    } else {
+        controls.target.lerp(new THREE.Vector3(-2, 4, -5), 0.03); 
+        camera.position.lerp(new THREE.Vector3(-3, 5, 1), 0.03);
+    }
 }
 
 //The loop where stuff happens
@@ -570,16 +552,40 @@ function loop(){
     if (mixerRain) mixerRain.update(dt);
     if (mixerDrizzle) mixerDrizzle.update(dt);
 
+    adjustCameraPosition();
+
+    controls.update();
+
     renderer.render(scene, camera)
     requestAnimationFrame( loop );
 }
 
+async function fetchWeatherData() {
+    const response = await fetch('https://api.openweathermap.org/data/2.5/weather?q=Skien&appid=5462453686705895f62c201357f2aac7&units=metric');
+    const data = await response.json();
+    return data;
+}
+
+function displayWeatherData(data) {
+    const weatherContainer = document.getElementById('weather-container');
+    weatherContainer.innerHTML = `
+        <h3>Weather in ${data.name}</h3>
+        <p>Temperature: ${data.main.temp}°C</p>
+        <p>Condition: ${data.weather[0].description}</p>
+        <p>Humidity: ${data.main.humidity}%</p>
+        <p>Wind Speed: ${data.wind.speed} m/s</p>
+    `;
+}
+
 //Initialize everything
-function main(){
+async function main(){
     createScene();
     createControls();
     createLights();
     createObjects();
+
+    const weatherData = await fetchWeatherData();
+    displayWeatherData(weatherData);
 
     loop();
 }
