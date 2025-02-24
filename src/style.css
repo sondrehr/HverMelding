@@ -31,6 +31,7 @@ body {
     font-size: 24px;
     text-decoration: none;
     color: white;
+    left: 20px;
 }
 
 .navList {
@@ -40,11 +41,12 @@ body {
     margin: 0;
     padding: 0;
     position: absolute;
-    top: 60px;
+    top: 80px;
     right: 20px;
     background-color: turquoise;
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
 .navList li {
@@ -66,6 +68,10 @@ body {
     width: 30px;
     height: 30px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    position: absolute;
+    right: 60px;
+    top: 20px;
 }
 
 .ham .bar {
@@ -77,7 +83,7 @@ body {
 }
 
 .ham.active .bar:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: rotate(45deg) translate(5px, 9.3px);
 }
 
 .ham.active .bar:nth-child(2) {
@@ -85,21 +91,11 @@ body {
 }
 
 .ham.active .bar:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    transform: rotate(-45deg) translate(5px, -9.3px);
 }
 
 .ham.active + .navList {
     display: flex; /* Show the navigation list when the hamburger menu is active */
-}
-
-@media (max-width: 768px) {
-    .navList {
-        display: none; /* Hide the navigation list on smaller screens */
-    }
-
-    .ham {
-        display: flex; /* Show the hamburger menu icon on smaller screens */
-    }
 }
 
 main {
@@ -126,7 +122,7 @@ canvas.webgl {
 
 .weather-container {
     position: absolute;
-    top: 20px;
+    top: 80px;
     left: 20px;
     background-color: rgba(0, 0, 0, 0.7);
     color: white;

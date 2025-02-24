@@ -200,3 +200,12 @@ async function main() {
 main();
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const hamMenu = document.getElementById('hamMenu');
+    const navList = document.querySelector('.navList');
+
+    hamMenu.addEventListener('click', () => {
+        hamMenu.classList.toggle('active');
+        navList.classList.toggle('active');
+    });
+});
