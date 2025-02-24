@@ -35,26 +35,61 @@ body {
 
 .navList {
     list-style: none;
-    display: flex;
+    display: none; /* Hide the navigation list by default */
+    flex-direction: column;
     margin: 0;
     padding: 0;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: turquoise;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navList li {
-    margin-left: 20px;
+    margin: 10px 0;
 }
 
 .navList a {
     text-decoration: none;
     color: white;
     font-size: 18px;
+    padding: 10px 20px;
+    display: block;
 }
 
 .ham {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     width: 30px;
     height: 30px;
     cursor: pointer;
-    display: none; /* Hide by default, show on smaller screens with media queries */
+}
+
+.ham .bar {
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.ham.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.ham.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.ham.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.ham.active + .navList {
+    display: flex; /* Show the navigation list when the hamburger menu is active */
 }
 
 @media (max-width: 768px) {
@@ -63,7 +98,7 @@ body {
     }
 
     .ham {
-        display: block; /* Show the hamburger menu icon on smaller screens */
+        display: flex; /* Show the hamburger menu icon on smaller screens */
     }
 }
 

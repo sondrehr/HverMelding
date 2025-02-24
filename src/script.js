@@ -1,11 +1,10 @@
 import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import * as dat from 'dat.gui';
 import { handleKeydown } from './transition';
 import { load3Dfigures } from './loadModels';
 
-var renderer, camera, scene, gui, controls;
+var renderer, camera, scene, controls;
 var objects = {};
 var mixers = [];
 var sphere, floorMesh, rightWallMesh, leftWallMesh;
@@ -74,8 +73,6 @@ function loadMeshes() {
 function createScene() {
     scene = new THREE.Scene();
     scene.fog = new THREE.Fog(0xf7d9aa, 100, 950);
-
-    gui = new dat.GUI();
 
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
     camera.position.set(-3, 5, 1);
