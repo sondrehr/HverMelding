@@ -195,10 +195,15 @@ async function main() {
     displayWeatherData(weatherData);
 
     loop();
+
+    // Ensure the loading screen appears for at least 2 seconds
+    setTimeout(() => {
+        const loadingScreen = document.getElementById('loading-screen');
+        loadingScreen.classList.add('hidden');
+    }, 3000);
 }
 
 main();
-
 
 document.addEventListener('DOMContentLoaded', () => {
     const hamMenu = document.getElementById('hamMenu');
