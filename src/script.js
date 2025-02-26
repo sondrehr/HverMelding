@@ -196,11 +196,11 @@ async function main() {
 
     loop();
 
-    // Ensure the loading screen appears for at least 2 seconds
+    // Ensure the loading screen appears for at least 4 seconds
     setTimeout(() => {
         const loadingScreen = document.getElementById('loading-screen');
         loadingScreen.classList.add('hidden');
-    }, 3000);
+    }, 4000);
 }
 
 main();
