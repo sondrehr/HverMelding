@@ -46,6 +46,21 @@ module.exports = {
                 ]
             },
 
+            // SCSS
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    MiniCSSExtractPlugin.loader,
+                    'css-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            implementation: require('sass')
+                        }
+                    }
+                ]
+            },
+
             // CSS
             {
                 test: /\.css$/,

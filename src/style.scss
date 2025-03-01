@@ -1,0 +1,259 @@
+/* filepath: /c:/Users/sondr/OneDrive/Desktop/HverMelding/src/style.scss */
+
+// Variables
+$primary-color: turquoise;
+$secondary-color: white;
+$background-color: rgba(0, 0, 0, 0.7);
+$font-family: Arial, sans-serif;
+$loader-color: turquoise;
+$loader-shadow: #8edbe7;
+
+// Mixins
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Remove scroll bars */
+    font-family: $font-family;
+}
+
+body {
+    @include flex-center;
+    flex-direction: column;
+}
+
+#loading-screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: $secondary-color;
+    @include flex-center;
+    z-index: 1000;
+    transition: transform 1s ease-in-out;
+    transform: translateY(0); /* Initial state */
+    
+    &.hidden {
+        transform: translateY(-100%); /* Final state */
+    }
+}
+
+.loading-content {
+    @include flex-center;
+    flex-direction: column;
+    text-align: center;
+
+    h1 {
+        color: $primary-color;
+        font-size: 48px;
+        margin-bottom: 20px;
+    }
+
+    .loader {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+
+        .dash {
+            margin: 0 15px;
+            width: 35px;
+            height: 15px;
+            border-radius: 8px;
+            background: $loader-color;
+            box-shadow: 0 0 10px 0 $loader-shadow;
+        }
+
+        .dash:nth-child(1) {
+            margin-right: -18px;
+            transform-origin: center left;
+            animation: spin 3s linear infinite;  
+        }
+
+        .dash:nth-child(2) {
+            transform-origin: center right;
+            animation: spin2 3s linear infinite;
+            animation-delay: .2s;
+        }
+
+        .dash:nth-child(3) {
+            transform-origin: center right;
+            animation: spin3 3s linear infinite;
+            animation-delay: .3s;
+        }
+
+        .dash:nth-child(4) {
+            transform-origin: center right;
+            animation: spin4 3s linear infinite;
+            animation-delay: .4s;
+        }
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(360deg); }
+    30% { transform: rotate(370deg); }
+    35% { transform: rotate(360deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes spin2 {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(0deg); }
+    30% { transform: rotate(-180deg); }
+    35% { transform: rotate(-190deg); }
+    40% { transform: rotate(-180deg); }
+    78% { transform: rotate(-180deg); }
+    95% { transform: rotate(-360deg); }
+    98% { transform: rotate(-370deg); }
+    100% { transform: rotate(-360deg); }
+}
+
+@keyframes spin3 {
+    0% { transform: rotate(0deg); }
+    27% { transform: rotate(0deg); }
+    40% { transform: rotate(180deg); }
+    45% { transform: rotate(190deg); }
+    50% { transform: rotate(180deg); }
+    62% { transform: rotate(180deg); }
+    75% { transform: rotate(360deg); }
+    80% { transform: rotate(370deg); }
+    85% { transform: rotate(360deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes spin4 {
+    0% { transform: rotate(0deg); }
+    38% { transform: rotate(0deg); }
+    60% { transform: rotate(-360deg); }
+    65% { transform: rotate(-370deg); }
+    75% { transform: rotate(-360deg); }
+    100% { transform: rotate(-360deg); }
+}
+
+.topNav {
+    background-color: $primary-color;
+    color: $secondary-color;
+    padding: 20px 0; /* Increased padding to make the top nav bar taller */
+}
+
+.container {
+    @include flex-center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 24px;
+    text-decoration: none;
+    color: $secondary-color;
+    left: 20px;
+}
+
+.navList {
+    list-style: none;
+    display: none; /* Hide the navigation list by default */
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    background-color: $primary-color;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    li {
+        margin: 10px 0;
+
+        a {
+            text-decoration: none;
+            color: $secondary-color;
+            font-size: 18px;
+            padding: 10px 20px;
+            display: block;
+        }
+    }
+}
+
+.ham {
+    @include flex-center;
+    flex-direction: column;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: absolute;
+    right: 60px;
+    top: 20px;
+
+    .bar {
+        width: 100%;
+        height: 4px;
+        background-color: $secondary-color;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+
+    &.active {
+        .bar:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 9.3px);
+        }
+
+        .bar:nth-child(2) {
+            transform: translateX(1.5em) scaleX(2);
+        }
+
+        .bar:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -9.3px);
+        }
+
+        + .navList {
+            display: flex; /* Show the navigation list when the hamburger menu is active */
+        }
+    }
+}
+
+main {
+    flex: 1;
+    @include flex-center;
+}
+
+canvas.webgl {
+    width: 100%;
+    height: 100%;
+}
+
+.bottomNav {
+    background-color: $primary-color;
+    color: $secondary-color;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+    position: fixed; /* Ensure the bottom nav is fixed at the bottom */
+    bottom: 0;
+}
+
+.weather-container {
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    background-color: $background-color;
+    color: $secondary-color;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    max-width: 200px;
+    z-index: 10;
+}
