@@ -170,42 +170,42 @@ canvas.webgl {
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
-  }
+}
   
-  .dash {
+.loader .dash {
     margin: 0 15px;
     width: 35px;
     height: 15px;
     border-radius: 8px;
     background: turquoise;
     box-shadow: 0 0 10px 0 #8edbe7;
-  }
+}
   
-  .one {
+.loader .dash:nth-child(1) {
     margin-right: -18px;
     transform-origin: center left;
     animation: spin 3s linear infinite;  
-  }
+}
   
-  .two {
+.loader .dash:nth-child(2) {
     transform-origin: center right;
     animation: spin2 3s linear infinite;
     animation-delay: .2s;
-  }
+}
   
-  .three {
+.loader .dash:nth-child(3) {
     transform-origin: center right;
     animation: spin3 3s linear infinite;
     animation-delay: .3s;
-  }
+}
   
-  .four {
+.loader .dash:nth-child(4) {
     transform-origin: center right;
     animation: spin4 3s linear infinite;
     animation-delay: .4s;
-  }
+}
   
-  @keyframes spin {
+@keyframes spin {
     0% {
       transform: rotate(0deg);
     }
@@ -221,9 +221,9 @@ canvas.webgl {
     100% {
       transform: rotate(360deg);
     }
-  }
+}
   
-  @keyframes spin2 {
+@keyframes spin2 {
     0% {
       transform: rotate(0deg);
     }
@@ -251,9 +251,9 @@ canvas.webgl {
     100% {
       transform: rotate(-360deg);
     }
-  }
+}
   
-  @keyframes spin3 {
+@keyframes spin3 {
     0% {
       transform: rotate(0deg);
     }
@@ -284,9 +284,9 @@ canvas.webgl {
     100% {
       transform: rotate(360deg);
     }
-  }
+}
   
-  @keyframes spin4 {
+@keyframes spin4 {
     0% {
       transform: rotate(0deg);
     }
@@ -305,4 +305,4 @@ canvas.webgl {
     100% {
       transform: rotate(-360deg);
     }
-  }
+}
