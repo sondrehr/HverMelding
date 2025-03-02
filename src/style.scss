@@ -33,29 +33,24 @@ body {
     background-color: $primary-color;
     color: $secondary-color;
     padding: 20px 0;
-    text-align: center;
     width: 100%;
-    position: fixed; /* Ensure the bottom nav is fixed at the bottom */
+    position: fixed;
     top: 0;
-}
-
-.container {
-    @include flex-center;
+    display: flex;
     justify-content: space-between;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 20px;
-    position: relative;
+    align-items: center; /* Center items vertically */
     box-sizing: border-box;
+    text-align: center;
+
+    .logo {
+        font-size: 24px;
+        text-decoration: none;
+        color: $secondary-color;
+        height: fit-content;
+        margin-left: 20px;
+    }
 }
 
-.logo {
-    font-size: 24px;
-    text-decoration: none;
-    color: $secondary-color;
-    height: fit-content;
-    margin-left: 20px;
-}
 
 .navList {
     list-style: none;
@@ -92,9 +87,7 @@ body {
     height: 30px;
     cursor: pointer;
     transition: all 0.3s ease;
-    position: absolute;
-    right: 60px;
-    top: 20px;
+    margin-right: 60px;
 
     .bar {
         width: 100%;
@@ -102,6 +95,7 @@ body {
         background-color: $secondary-color;
         border-radius: 2px;
         transition: all 0.3s ease;
+        margin: 2px 0;
     }
 
     &.active {
