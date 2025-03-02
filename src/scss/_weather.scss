@@ -1,0 +1,14 @@
+@use 'variables' as *;
+
+.weather-container {
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    background-color: $background-color;
+    color: $secondary-color;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    max-width: 200px;
+    z-index: 10;
+}

@@ -1,0 +1,90 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.topNav {
+    background-color: $primary-color;
+    color: $secondary-color;
+    padding: 20px 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Center items vertically */
+    box-sizing: border-box;
+    text-align: center;
+
+    .logo {
+        font-size: 24px;
+        text-decoration: none;
+        color: $secondary-color;
+        height: fit-content;
+        margin-left: 20px;
+    }
+}
+
+
+.navList {
+    list-style: none;
+    display: none; /* Hide the navigation list by default */
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    background-color: $primary-color;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    li {
+        margin: 10px 0;
+
+        a {
+            text-decoration: none;
+            color: $secondary-color;
+            font-size: 18px;
+            padding: 10px 20px;
+            display: block;
+        }
+    }
+}
+
+.ham {
+    @include flex-center;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 55px;
+
+    .bar {
+        width: 100%;
+        height: 4px;
+        background-color: $secondary-color;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        margin: 2px 0;
+    }
+
+    &.active {
+        .bar:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 9.3px);
+        }
+
+        .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .bar:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -9.3px);
+        }
+
+        + .navList {
+            display: flex; /* Show the navigation list when the hamburger menu is active */
+        }
+    }
+}

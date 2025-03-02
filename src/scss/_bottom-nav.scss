@@ -1,0 +1,11 @@
+@use 'variables' as *;
+
+.bottomNav {
+    background-color: $primary-color;
+    color: $secondary-color;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+    position: fixed; /* Ensure the bottom nav is fixed at the bottom */
+    bottom: 0;
+}

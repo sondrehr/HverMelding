@@ -1,0 +1,11 @@
+@use 'mixins' as *;
+
+main {
+    flex: 1;
+    @include flex-center;
+}
+
+canvas.webgl {
+    width: 100%;
+    height: 100%;
+}
