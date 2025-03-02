@@ -2,6 +2,13 @@
 $loader-color: turquoise;
 $loader-shadow: #8edbe7;
 
+// Mixins
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #loading-screen {
     position: fixed;
     width: 100%;
@@ -41,7 +48,6 @@ $loader-shadow: #8edbe7;
             height: 15px;
             border-radius: 8px;
             background: $loader-color;
-            box-shadow: 0 0 10px 0 $loader-shadow;
         }
 
         .dash:nth-child(1) {

@@ -1,5 +1,7 @@
 /* filepath: /c:/Users/sondr/OneDrive/Desktop/HverMelding/src/style.scss */
 
+@use 'scss/loading-screen';
+
 // Variables
 $primary-color: turquoise;
 $secondary-color: white;
@@ -12,8 +14,6 @@ $font-family: Arial, sans-serif;
     justify-content: center;
     align-items: center;
 }
-
-@import 'loading-screen';
 
 html, body {
     margin: 0;
@@ -32,22 +32,29 @@ body {
 .topNav {
     background-color: $primary-color;
     color: $secondary-color;
-    padding: 20px 0; /* Increased padding to make the top nav bar taller */
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+    position: fixed; /* Ensure the bottom nav is fixed at the bottom */
+    top: 0;
 }
 
 .container {
     @include flex-center;
     justify-content: space-between;
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
+    box-sizing: border-box;
 }
 
 .logo {
     font-size: 24px;
     text-decoration: none;
     color: $secondary-color;
-    left: 20px;
+    height: fit-content;
+    margin-left: 20px;
 }
 
 .navList {
@@ -80,6 +87,7 @@ body {
 .ham {
     @include flex-center;
     flex-direction: column;
+    justify-content: space-around;
     width: 30px;
     height: 30px;
     cursor: pointer;
@@ -102,7 +110,7 @@ body {
         }
 
         .bar:nth-child(2) {
-            transform: translateX(1.5em) scaleX(2);
+            opacity: 0;
         }
 
         .bar:nth-child(3) {

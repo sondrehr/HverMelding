@@ -297,7 +297,7 @@ export function loadDrizzle(scene, mixers) {
 
 export function load3Dfigures(scene, mixers) {
     loadMoon(scene, mixers);
-    loadSun(scene, mixers);
+    // loadSun(scene, mixers);
     loadCloud(scene, mixers);
     loadRain(scene, mixers);
     // loadTornado(scene, mixers);
