@@ -25,19 +25,23 @@ $loader-shadow: #8edbe7;
 }
 
 .loading-content {
-    @include flex-center;
-    flex-direction: column;
-    text-align: center;
+    position: relative; // Changed from flex-center
+    width: 100%; // Add width to contain children
+    height: 100%; // Add height to contain children
 
     h1 {
+        position: absolute;
+        top: 42.5%;
+        left: 50%;
+        transform: translateX(-50%);
         color: $loader-color;
         font-size: 48px;
-        margin-bottom: 20px;
+        margin: 0;
     }
 
     .loader {
         position: absolute;
-        top: 57.5%;
+        top: 52.5%;
         left: 50%;
         transform: translate(-50%, -50%);
         display: flex;
