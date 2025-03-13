@@ -2,9 +2,11 @@ import * as THREE from 'three';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
-
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath('/draco')
 
 const gltfLoader = new GLTFLoader();
+gltfLoader.setDRACOLoader(dracoLoader)
 
 export function loadMoon(scene, mixers) {
     gltfLoader.load('/models/clearNight.gltf', function (gltf) {
