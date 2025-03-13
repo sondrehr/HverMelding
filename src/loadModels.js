@@ -2,8 +2,9 @@ import * as THREE from 'three';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
+// Since not using pure dracoLoader need to instanciate a gltfLoader with a dracoLoader "inside"
 const dracoLoader = new DRACOLoader();
-dracoLoader.setDecoderPath('/draco')
+dracoLoader.setDecoderPath('/draco/')
 
 const gltfLoader = new GLTFLoader();
 gltfLoader.setDRACOLoader(dracoLoader)
