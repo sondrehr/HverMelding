@@ -41,7 +41,7 @@ function loadMeshes() {
     const geometry = new THREE.SphereBufferGeometry(.5, 64, 64);
 
     const background = new THREE.MeshStandardMaterial({ color: 0x00e7ff, side: THREE.DoubleSide });
-    const normalTexture = textureLoader.load("/textures/map.jpg");
+    const normalTexture = textureLoader.load("/../static/textures/map.jpg");
 
     const material = new THREE.MeshStandardMaterial();
     material.roughness = 0.2;

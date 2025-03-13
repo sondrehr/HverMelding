@@ -16,7 +16,7 @@ module.exports = {
     [
         new CopyWebpackPlugin({
             patterns: [
-                { from: path.resolve(__dirname, '../static/models/draco') }
+                { from: path.resolve(__dirname, '../static') }
             ]
         }),
         new HtmlWebpackPlugin({
