@@ -140,7 +140,7 @@ function createLights() {
 }
 
 function createObjects() {
-    load3Dfigures(scene, mixers);
+    load3Dfigures(scene, mixers, objects);
     loadMeshes();
 }
 
