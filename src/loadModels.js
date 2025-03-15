@@ -31,9 +31,9 @@ function loadModel(scene, mixers, objects, modelPath) {
         });
 
         let name = modelPath.split("/").at(-1).split(".").at(0)
-        
+
         objects[name] = model
-        mixers.push(mixer);
+        mixers[name] = { mixer: mixer, active: true };
     }, undefined, function (error) {
         console.error(error);
     });
@@ -86,7 +86,7 @@ export function loadDrizzle(scene, mixers, objects) {
 
 export function load3Dfigures(scene, mixers, objects) {
     loadMoon(scene, mixers, objects);
-    // loadSun(scene, mixers, objects);
+    loadSun(scene, mixers, objects);
     loadCloud(scene, mixers, objects);
     loadRain(scene, mixers, objects);
     // loadTornado(scene, mixers, objects);

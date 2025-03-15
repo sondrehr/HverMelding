@@ -39,12 +39,12 @@ export function removeRain(scene, rain) {
 export function handleKeydown(event, scene, objects) {
     switch (event.key) {
         case "s":
-            addRain(scene, objects.rain);
-            moonToSun(objects.sun, objects.moon);
+            addRain(scene, objects.rainDraco);
+            moonToSun(objects.clearDayDraco, objects.clearNightDraco);
             break;
         case "m":
-            removeRain(scene, objects.rain);
-            sunToMoon(objects.sun, objects.moon);
+            removeRain(scene, objects.rainDraco);
+            sunToMoon(objects.clearDayDraco, objects.clearNightDraco);
             break;
     }
 }

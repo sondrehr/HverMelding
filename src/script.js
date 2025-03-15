@@ -6,7 +6,7 @@ import { load3Dfigures } from './loadModels';
 
 var renderer, camera, scene, controls;
 var objects = {};
-var mixers = [];
+var mixers = {};
 var sphere, floorMesh, rightWallMesh, leftWallMesh;
 var ambientColor, wallColor, lightTarget;
 
@@ -160,7 +160,11 @@ function adjustCameraPosition() {
 
 function loop() {
     const dt = clock.getDelta();
-    mixers.forEach(mixer => mixer.update(dt));
+    for (const key in mixers) {
+        if (mixers[key].active) {
+            mixers[key].mixer.update(dt);
+        }
+    }
 
     adjustCameraPosition();
     controls.update();
