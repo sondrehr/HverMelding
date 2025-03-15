@@ -4,13 +4,13 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 // Since not using pure dracoLoader need to instanciate a gltfLoader with a dracoLoader "inside"
 const dracoLoader = new DRACOLoader();
-dracoLoader.setDecoderPath('/draco/')
+dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/')
 
 const gltfLoader = new GLTFLoader();
 gltfLoader.setDRACOLoader(dracoLoader)
 
 export function loadMoon(scene, mixers) {
-    gltfLoader.load('/models/clearNight.gltf', function (gltf) {
+    gltfLoader.load('/models/draco/clearNightDraco.gltf', function (gltf) {
         const moon = gltf.scene;
         const animation = gltf.animations;
 
@@ -34,7 +34,7 @@ export function loadMoon(scene, mixers) {
 }
 
 export function loadSun(scene, mixers) {
-    gltfLoader.load('/models/clearDay.gltf', function (gltf) {
+    gltfLoader.load('/models/draco/clearDayDraco.gltf', function (gltf) {
         const sun = gltf.scene;
         const animation = gltf.animations;
 
@@ -62,7 +62,7 @@ export function loadSun(scene, mixers) {
 }
 
 export function loadCloud(scene, mixers) {
-    gltfLoader.load('/models/cloudy.gltf', function (gltf) {
+    gltfLoader.load('/models/draco/cloudyDraco.gltf', function (gltf) {
         const cloud = gltf.scene;
         const animation = gltf.animations;
 
@@ -92,7 +92,7 @@ export function loadCloud(scene, mixers) {
 }
 
 export function loadRain(scene, mixers) {
-    gltfLoader.load('/models/rain.gltf', function (gltf) {
+    gltfLoader.load('/models/draco/rainDraco.gltf', function (gltf) {
         const rain = gltf.scene;
         const animation = gltf.animations;
 
@@ -120,7 +120,7 @@ export function loadRain(scene, mixers) {
 }
 
 export function loadTornado(scene, mixers) {
-    gltfLoader.load('/models/tornado.gltf', function (gltf) {
+    gltfLoader.load('/models/draco/tornadoDraco.gltf', function (gltf) {
         const tornado = gltf.scene;
         const animation = gltf.animations;
 
@@ -152,7 +152,7 @@ export function loadTornado(scene, mixers) {
 }
 
 export function loadWind(scene, mixers) {
-    gltfLoader.load('/models/wind.gltf', function (gltf) {
+    gltfLoader.load('/models/draco/windDraco.gltf', function (gltf) {
         const wind = gltf.scene;
         const animation = gltf.animations;
 
@@ -176,7 +176,7 @@ export function loadWind(scene, mixers) {
 }
 
 export function loadFog(scene, mixers) {
-    gltfLoader.load('/models/fog.gltf', function (gltf) {
+    gltfLoader.load('/models/draco/fogDraco.gltf', function (gltf) {
         const fog = gltf.scene;
         const animation = gltf.animations;
 
@@ -200,7 +200,7 @@ export function loadFog(scene, mixers) {
 }
 
 export function loadMist(scene, mixers) {
-    gltfLoader.load('/models/mist.gltf', function (gltf) {
+    gltfLoader.load('/models/draco/mistDraco.gltf', function (gltf) {
         const mist = gltf.scene;
         const animation = gltf.animations;
 
@@ -224,7 +224,7 @@ export function loadMist(scene, mixers) {
 }
 
 export function loadThunder(scene, mixers) {
-    gltfLoader.load('/models/lighting.gltf', function (gltf) {
+    gltfLoader.load('/models/draco/lightingDraco.gltf', function (gltf) {
         const thunder = gltf.scene;
 
         thunder.scale.set(0.2, 0.2, 0.2);
@@ -246,7 +246,7 @@ export function loadThunder(scene, mixers) {
 }
 
 export function loadSnow(scene, mixers) {
-    gltfLoader.load('/models/snow.gltf', function (gltf) {
+    gltfLoader.load('/models/draco/snowDraco.gltf', function (gltf) {
         const snow = gltf.scene;
         const animation = gltf.animations;
 
@@ -274,7 +274,7 @@ export function loadSnow(scene, mixers) {
 }
 
 export function loadDrizzle(scene, mixers) {
-    gltfLoader.load('/models/drizzle.gltf', function (gltf) {
+    gltfLoader.load('/models/draco/drizzleDraco.gltf', function (gltf) {
         const drizzle = gltf.scene;
         const animation = gltf.animations;
 
