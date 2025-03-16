@@ -162,6 +162,8 @@ function adjustObjects() {
     for (const key in objects) {
         const object = objects[key];
         object.model.position.lerp(new THREE.Vector3(3, object.desiredPositionY, -5), 0.03)
+
+        object.model.position.y > 10 ? scene.remove(object.model) : scene.add(object.model);
     }
 }
 
