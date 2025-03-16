@@ -39,61 +39,16 @@ function loadModel(scene, mixers, objects, modelPath) {
     });
 }
 
-
-export function loadMoon(scene, mixers, objects) {
-    loadModel(scene, mixers, objects, '/models/draco/clearNightDraco.gltf');
-}
-
-export function loadSun(scene, mixers, objects) {
-    loadModel(scene, mixers, objects, '/models/draco/clearDayDraco.gltf');
-}
-
-export function loadCloud(scene, mixers, objects) {
-    loadModel(scene, mixers, objects, '/models/draco/cloudyDraco.gltf');
-}
-
-export function loadRain(scene, mixers, objects) {
-    loadModel(scene, mixers, objects, '/models/draco/rainDraco.gltf');
-}
-
-export function loadTornado(scene, mixers, objects) {
-    loadModel(scene, mixers, objects, '/models/draco/tornadoDraco.gltf');
-}
-
-export function loadWind(scene, mixers, objects) {
-    loadModel(scene, mixers, objects, '/models/draco/windDraco.gltf');
-}
-
-export function loadFog(scene, mixers, objects) {
-    loadModel(scene, mixers, objects, '/models/draco/fogDraco.gltf');
-}
-
-export function loadMist(scene, mixers, objects) {
-    loadModel(scene, mixers, objects, '/models/draco/mistDraco.gltf');
-}
-
-export function loadThunder(scene, mixers, objects) {
-    loadModel(scene, mixers, objects, '/models/draco/lightingDraco.gltf');
-}
-
-export function loadSnow(scene, mixers, objects) {
-    loadModel(scene, mixers, objects, '/models/draco/snowDraco.gltf');
-}
-
-export function loadDrizzle(scene, mixers, objects) {
-    loadModel(scene, mixers, objects, '/models/draco/drizzleDraco.gltf');
-}
-
 export function load3Dfigures(scene, mixers, objects) {
-    loadMoon(scene, mixers, objects);
-    loadSun(scene, mixers, objects);
-    loadCloud(scene, mixers, objects);
-    loadRain(scene, mixers, objects);
-    // loadTornado(scene, mixers, objects);
-    // loadWind(scene, mixers, objects);
-    // loadFog(scene, mixers, objects);
-    // loadMist(scene, mixers, objects);
-    // loadThunder(scene, mixers, objects);
-    // loadSnow(scene, mixers, objects);
-    // loadDrizzle(scene, mixers, objects);
+    loadModel(scene, mixers, objects, '/models/draco/moonDraco.gltf');
+    loadModel(scene, mixers, objects, '/models/draco/sunDraco.gltf');
+    loadModel(scene, mixers, objects, '/models/draco/cloudyDraco.gltf');
+    loadModel(scene, mixers, objects, '/models/draco/rainDraco.gltf');
+    // loadModel(scene, mixers, objects, '/models/draco/tornadoDraco.gltf');
+    // loadModel(scene, mixers, objects, '/models/draco/windDraco.gltf');
+    // loadModel(scene, mixers, objects, '/models/draco/fogDraco.gltf');
+    // loadModel(scene, mixers, objects, '/models/draco/mistDraco.gltf');
+    // loadModel(scene, mixers, objects, '/models/draco/lightningDraco.gltf');
+    // loadModel(scene, mixers, objects, '/models/draco/snowDraco.gltf');
+    // loadModel(scene, mixers, objects, '/models/draco/drizzleDraco.gltf');
 }
