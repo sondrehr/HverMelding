@@ -158,6 +158,13 @@ function adjustCameraPosition() {
     }
 }
 
+function adjustObjects() {
+    for (const key in objects) {
+        const object = objects[key];
+        object.model.position.lerp(new THREE.Vector3(3, object.desiredPositionY, -5), 0.03)
+    }
+}
+
 function loop() {
     const dt = clock.getDelta();
     for (const key in mixers) {
@@ -166,6 +173,7 @@ function loop() {
         }
     }
 
+    adjustObjects();
     adjustCameraPosition();
     controls.update();
     renderer.render(scene, camera);

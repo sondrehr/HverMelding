@@ -32,7 +32,7 @@ function loadModel(scene, mixers, objects, modelPath) {
 
         let name = modelPath.split("/").at(-1).split(".").at(0)
 
-        objects[name] = model
+        objects[name] = { model: model, show: true , desiredPositionY: 4 };
         mixers[name] = { mixer: mixer, active: true };
     }, undefined, function (error) {
         console.error(error);
@@ -42,8 +42,8 @@ function loadModel(scene, mixers, objects, modelPath) {
 export function load3Dfigures(scene, mixers, objects) {
     loadModel(scene, mixers, objects, '/models/draco/moonDraco.gltf');
     loadModel(scene, mixers, objects, '/models/draco/sunDraco.gltf');
-    loadModel(scene, mixers, objects, '/models/draco/cloudyDraco.gltf');
-    loadModel(scene, mixers, objects, '/models/draco/rainDraco.gltf');
+    //loadModel(scene, mixers, objects, '/models/draco/cloudyDraco.gltf');
+    //loadModel(scene, mixers, objects, '/models/draco/rainDraco.gltf');
     // loadModel(scene, mixers, objects, '/models/draco/tornadoDraco.gltf');
     // loadModel(scene, mixers, objects, '/models/draco/windDraco.gltf');
     // loadModel(scene, mixers, objects, '/models/draco/fogDraco.gltf');
