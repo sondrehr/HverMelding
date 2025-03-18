@@ -16,7 +16,7 @@ function loadModel(scene, mixers, objects, modelPath) {
 
         model.scale.set(0.2, 0.2, 0.2);
         model.rotation.set(0, -Math.PI * 11 / 16, 0);
-        model.position.set(3, 4, -5);
+        model.position.set(3, 14, -5);
 
         model.traverse(function (node) {
             node.castShadow = true;
@@ -32,7 +32,7 @@ function loadModel(scene, mixers, objects, modelPath) {
 
         let name = modelPath.split("/").at(-1).split(".").at(0)
 
-        objects[name] = { model: model, show: true , desiredPositionY: 4 };
+        objects[name] = { model: model, show: true , desiredPositionY: 14 };
         mixers[name] = { mixer: mixer, active: true };
     }, undefined, function (error) {
         console.error(error);
