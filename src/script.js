@@ -183,19 +183,44 @@ function loop() {
 }
 
 async function fetchWeatherData() {
-    const response = await fetch('https://api.openweathermap.org/data/2.5/weather?q=Skien&appid=5462453686705895f62c201357f2aac7&units=metric');
+    const lat = 59.2;
+    const lon = 9.6;
+    const url = `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${lat}&lon=${lon}`;
+
+    console.log("Fetching data");
+    const response = await fetch(url, {
+        headers: {
+            'User-Agent': 'HverMelding/1.0 (https://github.com/sondrehr/HverMelding)', // Replace with your app name and contact info
+        },
+    });
+
+    console.log(response.status);
+    console.log(response.ok);
+    console.log(response.statusText);
+    console.log(response.headers);
+
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch weather data: ${response.status}`);
+    }
+
     const data = await response.json();
     return data;
 }
 
 function displayWeatherData(data) {
     const weatherContainer = document.getElementById('weather-container');
+
+    const timeseries = data.properties.timeseries[0];
+    const temperature = timeseries.data.instant.details.air_temperature;
+    const windSpeed = timeseries.data.instant.details.wind_speed;
+    const humidity = timeseries.data.instant.details.relative_humidity;
+
     weatherContainer.innerHTML = `
-        <h3>Weather in ${data.name}</h3>
-        <p>Temperature: ${data.main.temp}°C</p>
-        <p>Condition: ${data.weather[0].description}</p>
-        <p>Humidity: ${data.main.humidity}%</p>
-        <p>Wind Speed: ${data.wind.speed} m/s</p>
+        <h3>Weather Forecast</h3>
+        <p>Temperature: ${temperature}°C</p>
+        <p>Humidity: ${humidity}%</p>
+        <p>Wind Speed: ${windSpeed} m/s</p>
     `;
 }
 
