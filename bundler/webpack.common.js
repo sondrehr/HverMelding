@@ -16,7 +16,12 @@ module.exports = {
     [
         new CopyWebpackPlugin({
             patterns: [
-                { from: path.resolve(__dirname, '../static') }
+                {
+                    from: path.resolve(__dirname, '../static'),
+                    globOptions: {
+                        ignore: ['**/models/gltf/**']
+                    }
+                }
             ]
         }),
         new HtmlWebpackPlugin({
