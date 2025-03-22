@@ -183,52 +183,18 @@ function loop() {
 }
 
 async function fetchWeatherData() {
-    const cacheKey = 'weatherData';
-    const cachedData = localStorage.getItem(cacheKey);
+    const lat = 59.2; // Replace with the desired latitude
+    const lon = 9.6;  // Replace with the desired longitude
+    const url = `http://localhost:3000/weather?lat=${lat}&lon=${lon}`; // Call the proxy server
 
-    let ifModifiedSince = null;
-
-    if (cachedData) {
-        const { data, expires } = JSON.parse(cachedData);
-
-        if (new Date() < new Date(expires)) {
-            console.log('Using cached weather data');
-            return data;
-        }
-
-        ifModifiedSince = expires;
-    }
-
-    const lat = 59.2;
-    const lon = 9.6;
-    const url = `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${lat}&lon=${lon}`;
-
-    console.log("Fetching new weather data");
-    const response = await fetch(url, {
-        headers: {
-            'User-Agent': 'HverMelding/1.0 (https://github.com/sondrehr/HverMelding)',
-            ...(ifModifiedSince && { 'If-Modified-Since': ifModifiedSince }),
-        },
-    });
-
-    console.log(response.status);
-    console.log(response.ok);
-    console.log(response.headers.get('Expires'));
-
-    if (response.status === 304) {
-        console.log('Data not modified, using cached data');
-        return JSON.parse(cachedData).data;
-    }
+    console.log("Fetching weather data from proxy server");
+    const response = await fetch(url);
 
     if (!response.ok) {
         throw new Error(`Failed to fetch weather data: ${response.status}`);
     }
 
     const data = await response.json();
-
-    const expires = response.headers.get('Expires') || new Date(Date.now() + 3600 * 1000).toUTCString();
-    localStorage.setItem(cacheKey, JSON.stringify({ data, expires }));
-
     return data;
 }
 
