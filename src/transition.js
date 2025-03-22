@@ -1,10 +1,4 @@
-export function sunToMoon(sun, moon, scene) {
 
-}
-
-export function moonToSun(sun, moon, scene) {
-    
-}
 
 export function handleKeydown(event, scene, objects) {
     switch (event.key) {

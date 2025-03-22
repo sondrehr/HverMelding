@@ -47,6 +47,8 @@ app.get('/weather', async (req, res) => {
         const data = await response.json();
         const expires = response.headers.get('Expires') || new Date(Date.now() + 3600 * 1000).toUTCString();
 
+        console.log(Date(expires));
+
         // Update the cache
         cache[cacheKey] = { data, expires };
 
@@ -57,7 +59,7 @@ app.get('/weather', async (req, res) => {
     }
 });
 
-// Start the server
+
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Proxy server running on http://localhost:${PORT}`);
