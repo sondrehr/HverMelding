@@ -6,11 +6,11 @@ Examples of the models created in blender which were then imported to three.js
 
 Render 1
 
-<img src="https://github.com/sondrehr/HverMelding/blob/main/Blender%20renders/untitled.png" alt="Drone version 2" width="600"/>
+<img src="https://github.com/sondrehr/HverMelding/blob/master/Blender%20renders/untitled.png" alt="Drone version 2" width="600"/>
 
 Render 2
 
-<img src="https://github.com/sondrehr/HverMelding/blob/main/Blender%20renders/untitled2.png" alt="Drone version 2" width="600"/>
+<img src="https://github.com/sondrehr/HverMelding/blob/master/Blender%20renders/untitled2.png" alt="Drone version 2" width="600"/>
 
 ## Installation and running
 
