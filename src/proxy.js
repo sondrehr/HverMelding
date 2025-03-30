@@ -35,6 +35,8 @@ app.get('/weather', async (req, res) => {
             },
         });
 
+        console.log('IfModifiedSince', ifModifiedSince);
+
         if (response.status === 304) {
             console.log('Data not modified, using cached data');
             return res.json(cache[cacheKey].data);
@@ -47,6 +49,8 @@ app.get('/weather', async (req, res) => {
         const data = await response.json();
         const expires = response.headers.get('Expires') || new Date(Date.now() + 3600 * 1000).toUTCString();
 
+        console.log('Loaded data');
+        console.log(response.headers.get('Expires'));
         console.log(Date(expires));
 
         // Update the cache
